@@ -1,0 +1,15 @@
+h1{
+    font: 30px eras, sans-serif;
+    text-align: center;
+    font-weight: none;
+    padding-top: 100px;
+}
+
+p{
+    font: 30px eras, sans-serif;
+    text-align: center;
+}
+
+input {
+    width: 250px;
+}

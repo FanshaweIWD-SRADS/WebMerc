@@ -1,0 +1,23 @@
+h1{
+	font: 60px eras, sans-serif;
+	color: #8806A8;
+	padding-top: 30px;
+	padding-bottom: 20px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	padding-left: 110px;
+}
+
+table#storeTable {
+	width: 90%; 
+}
+
+th, td {
+	padding: 15px;
+}
+
+table img{
+	border-style: dashed;
+	border-width: 2px;
+	border-color: black;
+}

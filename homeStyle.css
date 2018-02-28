@@ -1,0 +1,20 @@
+section h1{
+	float: left;
+	font-size: 72px;
+	margin-top:10px;
+	margin-left:10px;
+	margin-bottom:10px;
+}
+
+section p{
+	float:left;
+	margin-top: 80px;
+	padding: 1%;
+	width: 65%;
+	font-size:20px;
+	overflow:hidden;
+}
+
+section{
+	height: 500px;
+}

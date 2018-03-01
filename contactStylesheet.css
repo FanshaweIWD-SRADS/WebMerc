@@ -27,7 +27,7 @@ h1{
 }
 .column3 {
     float: left;
-    width: 13%;
+    max-width: 130px;
     padding: 10px;
 	height: 350px; /* Should be removed. Only for demonstration */
 	margin-left: 1%;

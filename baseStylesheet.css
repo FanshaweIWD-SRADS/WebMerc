@@ -32,7 +32,7 @@ footer {
 	width: 100%;
 	background-color: grey;
 	bottom: 0px;
-	height: 100px;
+	height: 30px;
 	text-align: center;
 	padding-bottom:1%;
 }
@@ -45,11 +45,6 @@ footer ul {
 footer li {
 	float: left;
 	margin-right:5%;
-}
-
-footer p {
-	color:white;
-	font: 30px eras, sans-serif;
 }
 
 footer a {

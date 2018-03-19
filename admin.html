@@ -2,9 +2,8 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Login</title>
+	<title>Homepage</title>
 	<link rel="stylesheet" type="text/css" href="baseStylesheet.css">
-	<link rel="stylesheet" type="text/css" href="loginStylesheet.css">
 	<script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
 	<script>
 	  // Initialize Firebase
@@ -19,41 +18,20 @@
 	  firebase.initializeApp(config);
 	</script>
 	<script>
-		function login(){
-			//grab the input
-			var email = document.getElementById("userName").value;
-			var password = document.getElementById("passWord").value;
+		function authenticate(){
 			
-			if(email!= "" && password != ""){
-				localStorage.setItem("email", email);
-				localStorage.setItem("password", password);
-				firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error){
-					var errorCode = error.code;
-					var errorMessage = error.message;
-					if(errorCode === "auth/wrong-password"){
-						alert("wrong password");
-					} else {
-						alert(errorMessage);
-					}
-					console.log(error);
-				}).then(function(userObject){
-					console.log('successfully logged in');
-					var userId = userObject.uid;
-					alert("Logged in to: "+email);
-					
-					if(email == "admin@test.com"){
-						window.location.href = "admin.html";
-					}
-					
-				});
-			} else{
-				alert("enter both an email and password");
+			var email = localStorage.getItem("email");
+			var password = localStorage.getItem("password");
+			alert(email);
+			
+			if(email != "admin@test.com"){
+				window.location.href = "home.html";
 			}
 		}
 	
 	</script>
 </head>
-<body>
+<body onload="authenticate();">
 	<nav>
 		<img src="images/WebMercLogo.png" alt="logo">
 		<div id="navText">
@@ -73,13 +51,7 @@
 		</div>
 	</nav>
 	<section>
-		<h1>Welcome... Please enter your Username and Password</h1>
 
-		<p>login         <input type="text" id="userName"></p>
-		<p>password <input type="text" id="passWord"></p>
-		<div id="button">
-			<input type="button" id="btnLogin" value="Login" onclick="login();"/>
-		</div>
 	</section>
 	<footer>
 		<ul>

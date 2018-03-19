@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Homepage</title>
+	<link rel="stylesheet" type="text/css" href="baseStylesheet.css">
+	<script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
+	<script>
+	  // Initialize Firebase
+	  var config = {
+		apiKey: "AIzaSyBsB-buu8KhZE8IBVWCXk-u2q7F_mTw7og",
+		authDomain: "webmercenary-19c7a.firebaseapp.com",
+		databaseURL: "https://webmercenary-19c7a.firebaseio.com",
+		projectId: "webmercenary-19c7a",
+		storageBucket: "",
+		messagingSenderId: "47775934888"
+	  };
+	  firebase.initializeApp(config);
+	</script>
+	<script>
+		function authenticate(){
+			
+			var email = localStorage.getItem("email");
+			var password = localStorage.getItem("password");
+			alert(email);
+			
+			if(email != "admin@test.com"){
+				window.location.href = "home.html";
+			}
+		}
+	
+	</script>
+</head>
+<body onload="authenticate();">
+	<nav>
+		<img src="images/WebMercLogo.png" alt="logo">
+		<div id="navText">
+			<img src="images/Logo.jpg" alt="h1">
+		</div>
+		<div id="dropdown">
+			<button>=</button>
+			<div id="dropdown-content">
+				<a href="home.html">Home</a>
+				<a href="store.html">Store</a>
+				<a href="login.html">Login</a>
+				<a href="location.html">Location</a>
+				<a href="developerPage.html">Developers</a>
+				<a href="contact.html">Contact</a>
+				<a href="FAQ.html">FAQ</a>
+			</div>
+		</div>
+	</nav>
+	<section>
+
+	</section>
+	<footer>
+		<ul>
+			<li><a href="home.html">Home</a></li>
+			<li><a href="store.html">Store</a></li>
+			<li><a href="login.html">Login</a></li>
+			<li><a href="location.html">Location</a></li>
+			<li><a href="developerPage.html">Developer Pages</a></li>
+			<li><a href="contact.html">Contact</a></li>
+			<li><a href="FAQ.html">FAQ</a></li>
+		</ul>
+	</footer>
+</body>
+</html>

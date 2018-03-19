@@ -39,12 +39,37 @@
 			  <p class="centerText">ON</p>
 		  </div>
 		  <div class="column2">
-			  <p>Name:  <input type="text" name="txtName"></p>
-			  <p>Email:  <input type="text" name="txtEmail"></p>
-			  <P>Phone:  <input type="text" name="txtPhone"></P>
-			  <p>Comments</p>
-			  <textarea rows="10" cols="100" class="txtArea"></textarea>
+			<form id="gform" method="POST" data-email="example@email.net"
+			action="https://script.google.com/macros/s/AKfycbzpvfkKDXPCqZq27mEVYJwzwnSr2-cJlhBnR-uH0-GFsH0HJERf/exec">
+		  
+			  <fieldset >
+				<label for="name">Name: </label>
+				<input id="name" name="name" placeholder="Your Name" />
+			  </fieldset>	
+			  
+			  <fieldset >
+				<label for="phone">Phone Number: </label>
+				<input id="phone" name="phone" placeholder="##########" />
+			  </fieldset>
+
+		  		<fieldset>
+				<label for="email">Email Address:</label>
+				<input id="email" name="email" type="email" value=""
+				required placeholder="your.name@email.com"/>
+				<span id="email-invalid" style="display:none">
+				  Must be a valid email address</span>
+			  </fieldset>
+
+			  <fieldset >
+				<label for="message">Message: </label>
+				<textarea id="message" name="message" rows="10"
+				placeholder="Place your message here..."></textarea>
+			  </fieldset>
+		  
+			  <button>&nbsp;Send</button>
+			</form>
 		  </div>
+
 		  <div class="column3">
 				<img src="images/facebookIcon.ico" alt="temp Icon, permanent icon later">
 				<img src="images/facebookIcon.ico" alt="temp Icon, permanent icon later">
@@ -52,6 +77,7 @@
 		  </div>
 		</div>
 	</section>
+
 	<footer>
 		<ul>
 			<li><a href="home.html">Home</a></li>

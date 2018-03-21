@@ -33,27 +33,30 @@
 			var itemName = document.getElementById("name").value;
 			var itemPrice = document.getElementById("price").value;
 			var itemDesc = document.getElementById("description").value;
-			
-			var itemObj = {
-				itemName: itemName,
-				itemPrice: itemPrice,
-				itemDesc: itemDesc
-			}
-			
-			var itemId = firebase.database().ref('Store').push().key;
-			
-			firebase.database().ref('Store').child(itemId).set(itemObj).then(
-			function(error){
-				if(error){
-					console.error(error);
-				} else{
-					alert("Item Added");
+			if(itemName != '' || itemPrice != '' || itemDesc !=''){
+				var itemObj = {
+					itemName: itemName,
+					itemPrice: itemPrice,
+					itemDesc: itemDesc
 				}
-			});
-			
-			document.getElementById("name").value = "";
-			document.getElementById("price").value = "";
-			document.getElementById("description").value = "";
+				
+				var itemId = firebase.database().ref('Store').push().key;
+				
+				firebase.database().ref('Store').child(itemId).set(itemObj).then(
+				function(error){
+					if(error){
+						console.error(error);
+					} else{
+						alert("Item Added");
+					}
+				});
+				
+				document.getElementById("name").value = "";
+				document.getElementById("price").value = "";
+				document.getElementById("description").value = "";
+			} else {
+				alert("Please fill out all the fields");
+			}
 		}
 	</script>
 </head>

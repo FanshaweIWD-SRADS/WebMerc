@@ -12,8 +12,9 @@ table#storeTable {
 	width: 90%; 
 }
 
-th, td {
-	padding: 15px;
+td {
+	width: 23%;
+	padding: 1%;
 }
 
 table img{
@@ -55,9 +56,12 @@ table img{
 
 .btnDiv {
 	float: right;
+	width: 10%;
+	margin-right: 30%;
   }
 .textdiv {
 	float: left;
 	overflow: hidden;
+	width: 12%;
 }
  

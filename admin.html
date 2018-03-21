@@ -23,7 +23,7 @@
 
 			var email = localStorage.getItem("email");
 			var password = localStorage.getItem("password");
-			alert(email);
+			console.log("Logged into: "+email);
 
 			if(email != "admin@test.com"){
 				window.location.href = "home.html";
@@ -59,20 +59,6 @@
 				alert("Please fill out all the fields");
 			}
 		}
-		function testLoad(){
-			var storeRef = firebase.database().ref('Store');
-			storeRef.child(key).remove();
-			storeRef.on('value',function(snapshot){
-					snapshot.forEach(function(childSnapshot){
-							//childSnapshot.remove();
-							// var childData = childSnapshot.val();
-							// console.log("Name: "+childData.itemName);
-							// console.log("Desc: "+childData.itemDesc);
-							// console.log("Price: "+childData.itemPrice);
-							// console.log("");
-					});
-			});
-		}
 
 		function searchItem(){
 			var itemName = document.getElementById("name").value;
@@ -92,11 +78,22 @@
 				snapshot.forEach(function(childSnapshot) {
 					ref.child(childSnapshot.key).remove();
 				});
-				//console.log(snapshot.key);
-				//ref.remove(snapshot.key);
+				document.getElementById("name").value = "";
+				document.getElementById("price").value = "";
+				document.getElementById("description").value = "";
 			});
-			// console.log(JSON.stringify(query.val()));
-			// query.remove();
+		}
+		
+		function updateItem(){
+			var itemName = document.getElementById("name").value;
+			var ref = firebase.database().ref('Store');
+			ref.orderByChild("itemName").equalTo(itemName).once("value")
+			.then(function(snapshot) {
+				snapshot.forEach(function(childSnapshot) {
+					ref.child(childSnapshot.key).remove();
+				});
+				addItem();
+			});
 		}
 	</script>
 </head>
@@ -120,16 +117,18 @@
 		</div>
 	</nav>
 	<section id="productForm">
-		Name: <br>
-		<input type="text" id="name"> <br>
-		Price: <br>
-		<input type="text" id="price"> <br>
-		Description: <br>
-		<input type="text" id="description"> <br>
-		<input type="button" value="Add" onclick="addItem();">
-		<input type="button" value="Update">
-		<input type="button" value="Delete" onclick="deleteItem();">
-		<input type="button" value="Search" onclick="searchItem();">
+		<div id="wrap">
+			Name: <br>
+			<input type="text" id="name"> <br>
+			Price: <br>
+			<input type="text" id="price"> <br>
+			Description: <br>
+			<input type="text" id="description"> <br>
+			<input type="button" value="Add" onclick="addItem();">
+			<input type="button" value="Update" onclick="updateItem();">
+			<input type="button" value="Delete" onclick="deleteItem();">
+			<input type="button" value="Search" onclick="searchItem();">
+		</div>
 	</section>
 	<footer>
 		<ul>

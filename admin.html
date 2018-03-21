@@ -50,6 +50,10 @@
 					alert("Item Added");
 				}
 			});
+			
+			document.getElementById("name").value = "";
+			document.getElementById("price").value = "";
+			document.getElementById("description").value = "";
 		}
 	</script>
 </head>
@@ -79,10 +83,10 @@
 		<input type="text" id="price"> <br>
 		Description: <br>
 		<input type="text" id="description"> <br>
-		<input type="button" value="CREATE" onclick="addItem();">
-		<input type="button" value="UPDATE">
-		<input type="button" value="DELETE">
-		<input type="button" value="SEARCH">
+		<input type="button" value="Add" onclick="addItem();">
+		<input type="button" value="Update">
+		<input type="button" value="Delete">
+		<input type="button" value="Search">
 	</section>
 	<footer>
 		<ul>

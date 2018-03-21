@@ -59,16 +59,40 @@
 				alert("Please fill out all the fields");
 			}
 		}
+		function testLoad(){
+			var storeRef = firebase.database().ref('Store');
+			storeRef.child(key).remove();
+			storeRef.on('value',function(snapshot){
+					snapshot.forEach(function(childSnapshot){
+							//childSnapshot.remove();
+							// var childData = childSnapshot.val();
+							// console.log("Name: "+childData.itemName);
+							// console.log("Desc: "+childData.itemDesc);
+							// console.log("Price: "+childData.itemPrice);
+							// console.log("");
+					});
+			});
+		}
+
+		function searchItem(){
+			var itemName = document.getElementById("name").value;
+			var ref = firebase.database().ref('Store');
+			var query = ref.equalTo(itemName);
+			ref.orderByChild("itemName").equalTo(itemName).once("child_added", function(snapshot) {
+				document.getElementById("price").value = snapshot.val().itemPrice;
+				document.getElementById("description").value = snapshot.val().itemDesc;
+			});
+		}
 
 		function deleteItem(){
 			var itemName = document.getElementById("name").value;
-			var docref = firebase.database().ref('Store');
-			var query = docref.where("itemName", "==", itemName);
-			query.delete().then(function() {
-			console.log("Document successfully deleted!");
-	}).catch(function(error) {
-			console.error("Error removing document: ", error);
-	});
+			var ref = firebase.database().ref('Store');
+			var query = ref.equalTo(itemName);
+			ref.orderByChild("itemName").equalTo(itemName).once("child_added", function(snapshot) {
+				console.log(snapshot.key);
+			});
+			// console.log(JSON.stringify(query.val()));
+			// query.remove();
 		}
 	</script>
 </head>
@@ -101,7 +125,7 @@
 		<input type="button" value="Add" onclick="addItem();">
 		<input type="button" value="Update">
 		<input type="button" value="Delete" onclick="deleteItem();">
-		<input type="button" value="Search">
+		<input type="button" value="Search" onclick="searchItem();">
 	</section>
 	<footer>
 		<ul>

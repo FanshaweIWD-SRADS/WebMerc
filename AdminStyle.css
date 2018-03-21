@@ -10,24 +10,24 @@
 		<input type="button" value="Delete">
 		<input type="button" value="Search">
 	</section>*/
-
-body {
-	text-transform: uppercase;
-
-}
-
 section {
-	border:1.5px black solid;
-	border-radius: 5px;
-	padding: 5px;
+
+	height: 300px;
 }
 
 #productForm {
 	margin:15%;
 }
 
+#wrap{
+	border:1.5px black solid;
+	border-radius: 5px;
+	padding: 5px;
+	margin-left: 20%;
+	margin-right: 20%;
+}
+
 input {
-	text-transform: uppercase;
 	padding: 5px;
 	margin: 5px;
 	border:1.5px black solid;

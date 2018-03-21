@@ -87,9 +87,13 @@
 		function deleteItem(){
 			var itemName = document.getElementById("name").value;
 			var ref = firebase.database().ref('Store');
-			var query = ref.equalTo(itemName);
-			ref.orderByChild("itemName").equalTo(itemName).once("child_added", function(snapshot) {
-				console.log(snapshot.key);
+			ref.orderByChild("itemName").equalTo(itemName).once("value")
+			.then(function(snapshot) {
+				snapshot.forEach(function(childSnapshot) {
+					ref.child(childSnapshot.key).remove();
+				});
+				//console.log(snapshot.key);
+				//ref.remove(snapshot.key);
 			});
 			// console.log(JSON.stringify(query.val()));
 			// query.remove();

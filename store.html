@@ -5,8 +5,70 @@
 	<title>Store</title>
 	<link rel="stylesheet" type="text/css" href="baseStylesheet.css">
 	<link rel="stylesheet" type="text/css" href="storeStylesheet.css">
+	<script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
+	<script>
+	  // Initialize Firebase
+	  var config = {
+		apiKey: "AIzaSyBsB-buu8KhZE8IBVWCXk-u2q7F_mTw7og",
+		authDomain: "webmercenary-19c7a.firebaseapp.com",
+		databaseURL: "https://webmercenary-19c7a.firebaseio.com",
+		projectId: "webmercenary-19c7a",
+		storageBucket: "",
+		messagingSenderId: "47775934888"
+	  };
+	  firebase.initializeApp(config);
+	</script>
+	<script>
+		var count = 0;
+		
+		function login(){
+			console.log("First line in login function");
+			var email = "general@test.com";
+			var password = "test123";
+			
+			firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error){
+				var errorCode = error.code;
+				var errorMessage = error.message;
+				if(errorCode === "auth/wrong-password"){
+					alert("wrong password");
+				} else {
+					alert(errorMessage);
+				}
+				console.log(error);
+			}).then(function(userObject){
+				console.log('Successfully logged in (Login Function)');
+			});
+			console.log("Last line in Login function");
+		}
+		
+		function load(){
+			console.log("First line in load function");
+			login();
+	
+			var storeRef = firebase.database().ref('Store');
+			storeRef.on('value',function(snapshot){
+				var table = "<tr>";
+				snapshot.forEach(function(childSnapshot){
+					childData = childSnapshot.val();
+					table += "<td><img src='images/storeImage.png'/><div class='btnDiv'><button type='button' class='purchaseBtn'>"+childData.itemPrice+"</button></div><div class='textDiv'><label class='name'>"+childData.itemName+"</label><br><label class='desc'>"+childData.itemDesc+"</label></div></td>";
+					if (count < 3){
+						count++;
+					} else{
+						count = 0;
+						table += "</tr><tr>";
+					}
+				});
+				if(count !=0){
+					table+="</tr>";
+				}
+				console.log("Adding items to table (Load function)...")
+				document.getElementById("storeTable").innerHTML = table;
+			});
+			console.log("Last line in Load function");
+		}
+	</script>
 </head>
-<body>
+<body onload="load();">
 	<nav>
 		<img src="images/WebMercLogo.png" alt="logo">
 		<div id="navText">
@@ -30,90 +92,7 @@
 
 	<section>
 		<table id="storeTable" align="center">
- 			<tr>
-				<td><img src="images/storeImage.png">
-					<div class="btnDiv">
-						<button type="button" name="purchase" class="purchaseBtn">$29.99</button>
-					</div>
-					<div class="textDiv">
-						<label class="name">name of product</label>	
-						<br><label class="desc">description</label>
-					</div>
-
-				<td><img src="images/storeImage.png">
-					<div class="btnDiv">
-						<button type="button" name="purchase" class="purchaseBtn">$29.99</button>
-					</div>
-					<div class="textDiv">
-						<label class="name">name of product</label>	
-						<br><label class="desc">description</label>
-					</div>
-
-				<td><img src="images/storeImage.png">
-					<div class="btnDiv">
-						<button type="button" name="purchase" class="purchaseBtn">$29.99</button>
-					</div>
-					<div class="textDiv">
-						<label class="name">name of product</label>	
-						<br><label class="desc">description</label>
-					</div>
- 			</tr>
- 			<tr>
-				<td><img src="images/storeImage.png">
-					<div class="btnDiv">
-						<button type="button" name="purchase" class="purchaseBtn">$29.99</button>
-					</div>
-					<div class="textDiv">
-						<label class="name">name of product</label>	
-						<br><label class="desc">description</label>
-					</div>
-				
-				<td><img src="images/storeImage.png">
-					<div class="btnDiv">
-						<button type="button" name="purchase" class="purchaseBtn">$29.99</button>
-					</div>
-					<div class="textDiv">
-						<label class="name">name of product</label>	
-						<br><label class="desc">description</label>
-					</div>
-				
-				<td><img src="images/storeImage.png">
-					<div class="btnDiv">
-						<button type="button" name="purchase" class="purchaseBtn">$29.99</button>
-					</div>
-					<div class="textDiv">
-						<label class="name">name of product</label>	
-						<br><label class="desc">description</label>
-					</div>
-  			</tr>
- 		 	<tr>
-				<td><img src="images/storeImage.png">
-					<div class="btnDiv">
-						<button type="button" name="purchase" class="purchaseBtn">$29.99</button>
-					</div>
-					<div class="textDiv">
-						<label class="name">name of product</label>	
-						<br><label class="desc">description</label>
-					</div>
-
-				<td><img src="images/storeImage.png">
-					<div class="btnDiv">
-						<button type="button" name="purchase" class="purchaseBtn">$29.99</button>
-					</div>
-					<div class="textDiv">
-						<label class="name">name of product</label>	
-						<br><label class="desc">description</label>
-					</div>
-
-				<td><img src="images/storeImage.png">
-					<div class="btnDiv">
-						<button type="button" name="purchase" class="purchaseBtn">$29.99</button>
-					</div>
-					<div class="textDiv">
-						<label class="name">name of product</label>	
-						<br><label class="desc">description</label>
-					</div>
-		 	</tr>
+ 			
 		</table>
 	</section>
 

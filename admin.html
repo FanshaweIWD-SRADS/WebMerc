@@ -64,6 +64,11 @@
 			var itemName = document.getElementById("name").value;
 			var docref = firebase.database().ref('Store');
 			var query = docref.where("itemName", "==", itemName);
+			query.delete().then(function() {
+			console.log("Document successfully deleted!");
+	}).catch(function(error) {
+			console.error("Error removing document: ", error);
+	});
 		}
 	</script>
 </head>

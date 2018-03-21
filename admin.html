@@ -29,6 +29,28 @@
 			}
 		}
 	
+		function addItem(){
+			var itemName = document.getElementById("name").value;
+			var itemPrice = document.getElementById("price").value;
+			var itemDesc = document.getElementById("description").value;
+			
+			var itemObj = {
+				itemName: itemName,
+				itemPrice: itemPrice,
+				itemDesc: itemDesc
+			}
+			
+			var itemId = firebase.database().ref('Store').push().key;
+			
+			firebase.database().ref('Store').child(itemId).set(itemObj).then(
+			function(error){
+				if(error){
+					console.error(error);
+				} else{
+					alert("Item Added");
+				}
+			});
+		}
 	</script>
 </head>
 <body onload="authenticate();">
@@ -51,18 +73,16 @@
 		</div>
 	</nav>
 	<section>
-		<form>
-			Name: <br>
-			<input type="text" name="name"> <br>
-			Price: <br>
-			<input type="text" name="price"> <br>
-			Description: <br>
-			<input type="text" name="description"> <br>
-			<input type="submit" value="CREATE">
-			<input type="submit" value="UPDATE">
-			<input type="submit" value="DELETE">
-			<input type="submit" value="SEARCH">
-		</form>
+		Name: <br>
+		<input type="text" id="name"> <br>
+		Price: <br>
+		<input type="text" id="price"> <br>
+		Description: <br>
+		<input type="text" id="description"> <br>
+		<input type="button" value="CREATE" onclick="addItem();">
+		<input type="button" value="UPDATE">
+		<input type="button" value="DELETE">
+		<input type="button" value="SEARCH">
 	</section>
 	<footer>
 		<ul>

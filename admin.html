@@ -19,16 +19,16 @@
 	</script>
 	<script>
 		function authenticate(){
-			
+
 			var email = localStorage.getItem("email");
 			var password = localStorage.getItem("password");
 			alert(email);
-			
+
 			if(email != "admin@test.com"){
 				window.location.href = "home.html";
 			}
 		}
-	
+
 		function addItem(){
 			var itemName = document.getElementById("name").value;
 			var itemPrice = document.getElementById("price").value;
@@ -39,9 +39,9 @@
 					itemPrice: itemPrice,
 					itemDesc: itemDesc
 				}
-				
+
 				var itemId = firebase.database().ref('Store').push().key;
-				
+
 				firebase.database().ref('Store').child(itemId).set(itemObj).then(
 				function(error){
 					if(error){
@@ -50,13 +50,19 @@
 						alert("Item Added");
 					}
 				});
-				
+
 				document.getElementById("name").value = "";
 				document.getElementById("price").value = "";
 				document.getElementById("description").value = "";
 			} else {
 				alert("Please fill out all the fields");
 			}
+		}
+
+		function deleteItem(){
+			var itemName = document.getElementById("name").value;
+			var docref = firebase.database().ref('Store');
+			var query = docref.where("itemName", "==", itemName);
 		}
 	</script>
 </head>
@@ -88,7 +94,7 @@
 		<input type="text" id="description"> <br>
 		<input type="button" value="Add" onclick="addItem();">
 		<input type="button" value="Update">
-		<input type="button" value="Delete">
+		<input type="button" value="Delete" onclick="deleteItem();">
 		<input type="button" value="Search">
 	</section>
 	<footer>

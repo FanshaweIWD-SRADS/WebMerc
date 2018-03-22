@@ -20,9 +20,7 @@
 	</script>
 	<script>
 		var count = 0;
-		
 		function login(){
-			console.log("First line in login function");
 			var email = "general@test.com";
 			var password = "test123";
 			
@@ -37,14 +35,11 @@
 				console.log(error);
 			}).then(function(userObject){
 				console.log('Successfully logged in (Login Function)');
+				load();
 			});
-			console.log("Last line in Login function");
 		}
 		
 		function load(){
-			console.log("First line in load function");
-			login();
-	
 			var storeRef = firebase.database().ref('Store');
 			storeRef.on('value',function(snapshot){
 				var table = "<tr>";
@@ -64,11 +59,10 @@
 				console.log("Adding items to table (Load function)...")
 				document.getElementById("storeTable").innerHTML = table;
 			});
-			console.log("Last line in Load function");
 		}
 	</script>
 </head>
-<body onload="load();">
+<body onload="login();">
 	<nav>
 		<img src="images/WebMercLogo.png" alt="logo">
 		<div id="navText">

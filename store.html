@@ -68,7 +68,7 @@
 				var table = "<tr>";
 				snapshot.forEach(function(childSnapshot){
 					childData = childSnapshot.val();
-					table += "<td><img src='"+childData.itemImage+"'/><div class='btnDiv'><button type='button' class='purchaseBtn' id='"+idCount+"' onclick='addToCart(this);'>"+childData.itemPrice+"</button></div><div class='textDiv'><label class='name' id='lbl"+idCount+"'>"+childData.itemName+"</label><br><label id='desc"+idCount+"' class='desc'>"+childData.itemDesc+"</label></div></td>";
+					table += "<td><img src='images/"+childData.itemImage+"'/><div class='btnDiv'><button type='button' class='purchaseBtn' id='"+idCount+"' onclick='addToCart(this);'>"+childData.itemPrice+"</button></div><div class='textDiv'><label class='name' id='lbl"+idCount+"'>"+childData.itemName+"</label><br><label id='desc"+idCount+"' class='desc'>"+childData.itemDesc+"</label></div></td>";
 					idCount++;
 					if (count < 3){
 						count++;

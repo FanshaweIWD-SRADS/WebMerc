@@ -34,11 +34,16 @@
 			var itemName = document.getElementById("name").value;
 			var itemPrice = document.getElementById("price").value;
 			var itemDesc = document.getElementById("description").value;
-			if(itemName != '' || itemPrice != '' || itemDesc !=''){
+			var picturePath = document.getElementById("pic").value;
+			var filename = picturePath.replace(/^.*[\\\/]/, '');
+			filename = "images/"+filename;
+			
+			if(itemName != '' && itemPrice != '' && itemDesc !=''){
 				var itemObj = {
 					itemName: itemName,
 					itemPrice: itemPrice,
-					itemDesc: itemDesc
+					itemDesc: itemDesc,
+					itemImage: filename
 				}
 
 				var itemId = firebase.database().ref('Store').push().key;
@@ -55,6 +60,7 @@
 				document.getElementById("name").value = "";
 				document.getElementById("price").value = "";
 				document.getElementById("description").value = "";
+				document.getElementById("pic").value = "";
 			} else {
 				alert("Please fill out all the fields");
 			}
@@ -124,6 +130,8 @@
 			<input type="text" id="price"> <br>
 			Description: <br>
 			<input type="text" id="description"> <br>
+			
+			<input type="file" id="pic" name="pic" accept=".jpg, .png, .jpeg"/> <br>
 			<input type="button" value="Add" onclick="addItem();">
 			<input type="button" value="Update" onclick="updateItem();">
 			<input type="button" value="Delete" onclick="deleteItem();">

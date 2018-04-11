@@ -19,6 +19,7 @@
 	  firebase.initializeApp(config);
 	</script>
 	<script>
+		var count = 0;
 		function login(){
 			var email = "general@test.com";
 			var password = "test123";
@@ -41,15 +42,22 @@
 		function load(){
 			var storeRef = firebase.database().ref('Cart');
 			storeRef.on('value',function(snapshot){
-				var table = "<tr><th>Name</th><th>Description</th><th>Price</th></tr><tr>";
+				var table = "<tr><th>Id</th><th>Name</th><th>Description</th><th>Price</th><th>Remove from Cart?</th></tr><tr id='0'>";
 				snapshot.forEach(function(childSnapshot){
+					count++;
 					childData = childSnapshot.val();
-					table += "<td>"+childData.itemName+"</td><td>"+childData.itemDesc+"</td><td>"+childData.itemPrice+"</td></tr><tr>";
+					table += "<td>"+count+"</td><td>"+childData.itemName+"</td><td>"+childData.itemDesc+"</td><td>"+childData.itemPrice+"</td><td><button onclick='remove("+count+")'>Remove</button></td></tr><tr id='"+count+"'>";
+
 				});
 				table+="</tr>";
 				console.log("Adding items to table (Load function)...")
 				document.getElementById("cartTable").innerHTML = table;
 			});
+		}
+		
+		function remove(id){
+			id = id-1;
+			document.getElementById(id).innerHTML = "";
 		}
 	</script>
 </head>
@@ -76,6 +84,7 @@
 		<table id="cartTable" border="1" align="center">
 
 		</table>
+		<button onclick="test()">test Button </button>
 	</section>
 	<footer>
 		<ul>

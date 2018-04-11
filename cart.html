@@ -5,8 +5,55 @@
 	<title>Homepage</title>
 	<link rel="stylesheet" type="text/css" href="baseStylesheet.css">
 	<link rel="stylesheet" type="text/css" href="cartStyleSheet.css">
+	<script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
+	<script>
+	  // Initialize Firebase
+	  var config = {
+		apiKey: "AIzaSyBsB-buu8KhZE8IBVWCXk-u2q7F_mTw7og",
+		authDomain: "webmercenary-19c7a.firebaseapp.com",
+		databaseURL: "https://webmercenary-19c7a.firebaseio.com",
+		projectId: "webmercenary-19c7a",
+		storageBucket: "",
+		messagingSenderId: "47775934888"
+	  };
+	  firebase.initializeApp(config);
+	</script>
+	<script>
+		function login(){
+			var email = "general@test.com";
+			var password = "test123";
+			
+			firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error){
+				var errorCode = error.code;
+				var errorMessage = error.message;
+				if(errorCode === "auth/wrong-password"){
+					alert("wrong password");
+				} else {
+					alert(errorMessage);
+				}
+				console.log(error);
+			}).then(function(userObject){
+				console.log('Successfully logged in (Login Function)');
+				load();
+			});
+		}
+		
+		function load(){
+			var storeRef = firebase.database().ref('Cart');
+			storeRef.on('value',function(snapshot){
+				var table = "<tr><th>Name</th><th>Description</th><th>Price</th></tr><tr>";
+				snapshot.forEach(function(childSnapshot){
+					childData = childSnapshot.val();
+					table += "<td>"+childData.itemName+"</td><td>"+childData.itemDesc+"</td><td>"+childData.itemPrice+"</td></tr><tr>";
+				});
+				table+="</tr>";
+				console.log("Adding items to table (Load function)...")
+				document.getElementById("cartTable").innerHTML = table;
+			});
+		}
+	</script>
 </head>
-<body>
+<body onload="login()">
 	<nav>
 		<img src="images/WebMercLogo.png" alt="logo">
 		<div id="navText">
@@ -26,7 +73,9 @@
 		</div>
 	</nav>
 	<section>
+		<table id="cartTable" border="1" align="center">
 
+		</table>
 	</section>
 	<footer>
 		<ul>

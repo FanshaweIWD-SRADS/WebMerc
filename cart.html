@@ -72,12 +72,13 @@
 			}
 			
 			alert("Checkout Complete! Your total is - "+total);
-			window.location.href = "home.html";
+			//window.location.href = "home.html";
 		}
 		
 		function remove(id){
 			var nameId = "name"+id;
 			var itemName = document.getElementById(nameId).innerHTML;
+			console.log("remove: "+itemName);
 			var ref = firebase.database().ref('Cart');
 			ref.orderByChild("itemName").equalTo(itemName).once("value")
 			.then(function(snapshot) {

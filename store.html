@@ -20,6 +20,7 @@
 	</script>
 	<script>
 		var count = 0;
+		var idCount = 0;
 		function login(){
 			var email = "general@test.com";
 			var password = "test123";
@@ -39,13 +40,36 @@
 			});
 		}
 		
+		function addToCart(ref){
+			var name = document.getElementById('lbl'+ref.id).innerHTML;
+			var price = ref.innerHTML;
+			var desc = document.getElementById('desc'+ref.id).innerHTML;
+			
+			var itemObj = {
+				itemName: name,
+				itemPrice: price,
+				itemDesc: desc
+			}
+			
+			var itemId = firebase.database().ref('Cart').push().key;
+			firebase.database().ref('Cart').child(itemId).set(itemObj).then(
+			function(error){
+					if(error){
+						console.error(error);
+					} else{
+						alert("Item Added To Cart");
+					}
+			});
+		}
+		
 		function load(){
 			var storeRef = firebase.database().ref('Store');
 			storeRef.on('value',function(snapshot){
 				var table = "<tr>";
 				snapshot.forEach(function(childSnapshot){
 					childData = childSnapshot.val();
-					table += "<td><img src='images/storeImage.png'/><div class='btnDiv'><button type='button' class='purchaseBtn'>"+childData.itemPrice+"</button></div><div class='textDiv'><label class='name'>"+childData.itemName+"</label><br><label class='desc'>"+childData.itemDesc+"</label></div></td>";
+					table += "<td><img src='images/storeImage.png'/><div class='btnDiv'><button type='button' class='purchaseBtn' id='"+idCount+"' onclick='addToCart(this);'>"+childData.itemPrice+"</button></div><div class='textDiv'><label class='name' id='lbl"+idCount+"'>"+childData.itemName+"</label><br><label id='desc"+idCount+"' class='desc'>"+childData.itemDesc+"</label></div></td>";
+					idCount++;
 					if (count < 3){
 						count++;
 					} else{

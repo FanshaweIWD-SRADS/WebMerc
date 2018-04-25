@@ -70,15 +70,15 @@ body {
 #dropdown-content {
 	display:none;
 	position:absolute;
-	min-width: 100px;	
-	background-color: white;	
+	min-width: 100px;
+	background-color: white;
 	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
 #dropdown-content a {
 	display:block;
 	text-decoration: none;
-	padding-left: 1%;	
+	padding-left: 1%;
 	color: black;
 	font-family: eras, sans-serif;
 }
@@ -94,15 +94,15 @@ nav button {
 }
 
 @media screen and (max-width: 1100px){
-\
+
 	footer ul{
 		margin-left: 2%;
 	}
-	
+
 	footer li{
 		font-size: 12px;
 	}
-	
+
 	#navText img{
 
 		margin-left: 30%;
@@ -113,11 +113,11 @@ nav button {
 	footer ul{
 		margin-left: 3%;
 	}
-	
+
 	footer li{
 		font-size: 12px;
 	}
-	
+
 	#navText img{
 		padding-top:15px;
 		max-height: 40px;

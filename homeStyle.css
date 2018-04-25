@@ -18,3 +18,24 @@ section p{
 section{
 	height: 500px;
 }
+
+@media screen and (max-width: 1100px){
+	section h1{
+		font-size: 50px;
+	}
+	
+	section p {
+		font-size:16px;
+	}
+}
+
+@media screen and (max-width: 900px){
+	section h1{
+		font-size: 30px;
+		margin-bottom:2px;
+	}
+	section p{
+		margin-top:50px;
+		font-size: 14px;
+	}
+}

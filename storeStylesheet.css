@@ -67,3 +67,20 @@ table img{
 	width: 12%;
 }
  
+#chkBtn {
+	background-color: grey;
+	text-transform: uppercase;
+	color: black;
+	margin-left: 5%;
+	margin-top: 5%;
+	padding:1%;
+	border: 2px solid black;
+	border-radius: 25px;
+}
+
+#chkBtn:hover {
+	background-color: white;
+	color: grey;
+	font-weight: bold;
+}
+ 

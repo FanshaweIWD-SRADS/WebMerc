@@ -8,6 +8,14 @@ h1{
 	font-weight: bold;
 }
 
+h1, h2, h4 {
+	font-family: 'Lobster', cursive;
+  }
+
+  p {
+	font-family: 'Lato', sans-serif;
+  }
+
 /* Create three equal columns that floats next to each other */
 .column1 {
     float: left;

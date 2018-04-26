@@ -11,13 +11,13 @@ section {
     height: 1500px;
 }
 .wrapper {
-		margin-right: 20%;
-        display: grid;
-        grid-gap: 30px;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-        grid-template-rows: ;
-        background-color: #fff;
-        color: #444;
+    margin-right: 20%;
+    display: grid;
+    grid-gap: 30px;
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-rows:;
+    background-color: #fff;
+    color: #444;
 }
 
 .box {
